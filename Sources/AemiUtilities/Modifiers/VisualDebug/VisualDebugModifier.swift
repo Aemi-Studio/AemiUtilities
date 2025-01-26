@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VisualDebugModifier: ViewModifier {
     
-    var color: Color
+    let color: Color
     
     @State
     private var size: CGSize? = .zero
@@ -54,11 +54,5 @@ struct VisualDebugModifier: ViewModifier {
                 .stroke(color.opacity(0.4), lineWidth: 0.5)
                 .foregroundStyle(.clear)
         }
-    }
-}
-
-extension View {
-    func debug(_ color: Color = .red) -> some View {
-        modifier(VisualDebugModifier(color))
     }
 }

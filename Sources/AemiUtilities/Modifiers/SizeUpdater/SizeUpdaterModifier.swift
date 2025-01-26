@@ -28,9 +28,3 @@ struct SizeUpdaterModifier: ViewModifier {
         }
     }
 }
-
-extension View {
-    func update(_ size: Binding<CGSize?>) -> some View {
-        modifier(SizeUpdaterModifier(size: size))
-    }
-}
