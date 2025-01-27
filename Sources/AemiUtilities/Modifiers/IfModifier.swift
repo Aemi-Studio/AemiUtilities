@@ -5,13 +5,12 @@
 //  Created by Gigi on 28/01/25.
 //
 
-
 import SwiftUI
 
-public extension View {
+extension View {
 
     @ViewBuilder
-    func `if`(_ condition: Bool...) -> some View {
+    public func `if`(_ condition: Bool...) -> some View {
         if condition.allSatisfy({ $0 }) {
             self
         } else {
@@ -20,7 +19,7 @@ public extension View {
     }
 
     @ViewBuilder
-    func `if`(_ condition: Bool, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
+    public func `if`(_ condition: Bool, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
         if condition {
             modifier(self)
         } else {
@@ -29,7 +28,7 @@ public extension View {
     }
 
     @ViewBuilder
-    func `if`(_ condition: Binding<Bool>, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
+    public func `if`(_ condition: Binding<Bool>, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
         if condition.wrappedValue {
             modifier(self)
         } else {
