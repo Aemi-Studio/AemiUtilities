@@ -15,7 +15,7 @@ struct SizeUpdaterModifier: ViewModifier {
                 GeometryReader { proxy in
                     Color.clear
                         .preference(key: SizeKey.self, value: proxy.size)
-                        .onPreferenceChange(SizeKey.self) { size = $0 }
+                        .onPreferenceChange(SizeKey.self) { value in Task { @MainActor in size = value } }
                         .onAppear { size = proxy.size }
                 }
             }
