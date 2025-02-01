@@ -10,27 +10,40 @@ import SwiftUI
 struct VisualDebugModifier: ViewModifier {
     
     let color: Color
+    let showDimensions: Bool
     
     @State
     private var size: CGSize? = .zero
     
-    init(_ color: Color) {
+    init(_ color: Color, showDimensions: Bool = false) {
         self.color = color
+        self.showDimensions = showDimensions
     }
     
     func body(content: Content) -> some View {
-        content
-            .overlay {
-                GeometryReader { _ in
-                    Rectangle()
-                        .stroke(color, lineWidth: 0.5)
-                        .foregroundStyle(.clear)
-                        .background(color.opacity(0.15))
-                        .allowsHitTesting(false)
-                        .update($size)
+        addDimensionsOverlay {
+            content
+                .overlay {
+                    GeometryReader { _ in
+                        Rectangle()
+                            .stroke(color, lineWidth: 0.5)
+                            .foregroundStyle(.clear)
+                            .background(color.opacity(0.15))
+                            .allowsHitTesting(false)
+                            .update($size)
+                    }
                 }
-            }
-            .overlay(alignment: .topTrailing) { sizeOverlay }
+        }
+    }
+    
+    @ViewBuilder
+    func addDimensionsOverlay(@ViewBuilder content: @escaping () -> some View) -> some View {
+        if showDimensions {
+            content()
+                .overlay(alignment: .topTrailing) { sizeOverlay }
+        } else {
+            content()
+        }
     }
     
     @ViewBuilder
