@@ -9,8 +9,8 @@ import SwiftUI
 import UIKit
 
 @MainActor
-public extension EnvironmentValues {
-    var safeAreaInsets: EdgeInsets {
+private struct SafeAreaInsetsKey: @preconcurrency EnvironmentKey {
+    static var defaultValue: EdgeInsets {
         if let windowScene = UIApplication.shared.connectedScenes
             .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
            let insets = windowScene.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets
@@ -24,5 +24,12 @@ public extension EnvironmentValues {
         } else {
             EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         }
+    }
+}
+
+public extension EnvironmentValues {
+    var safeAreaInsets: EdgeInsets {
+        get { self[SafeAreaInsetsKey.self] }
+        set { }
     }
 }
