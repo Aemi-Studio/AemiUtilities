@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SizeUpdaterModifier: ViewModifier {
-    @Binding var size: CGSize?
+    @Binding private(set) var size: SizeKey.Value?
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -20,10 +20,10 @@ struct SizeUpdaterModifier: ViewModifier {
                 }
             }
     }
-    private struct SizeKey: PreferenceKey {
+    internal struct SizeKey: PreferenceKey {
         typealias Value = CGSize
-        static let defaultValue: CGSize = .zero
-        static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        static let defaultValue: Value = .zero
+        static func reduce(value: inout Value, nextValue: () -> Value) {
             value = nextValue()
         }
     }

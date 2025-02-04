@@ -20,5 +20,6 @@ let package = Package(
         .target(
             name: "AemiUtilities"),
 
-    ]
+    ],
+    swiftLanguageModes: [.v5,.v6]
 )

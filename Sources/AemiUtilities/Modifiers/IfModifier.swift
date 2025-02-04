@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
 
     @ViewBuilder
-    public func `if`(_ condition: Bool...) -> some View {
+    func `if`(_ condition: Bool...) -> some View {
         if condition.allSatisfy({ $0 }) {
             self
         } else {
@@ -19,7 +19,7 @@ extension View {
     }
 
     @ViewBuilder
-    public func `if`(_ condition: Bool, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
+    func `if`(_ condition: Bool, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
         if condition {
             modifier(self)
         } else {
@@ -28,7 +28,7 @@ extension View {
     }
     
     @ViewBuilder
-    public func `if`(
+    func `if`(
         _ condition: Bool,
         @ViewBuilder modifier: @escaping (Self) -> some View,
         @ViewBuilder else elseModifier: @escaping (Self) -> some View
@@ -41,7 +41,7 @@ extension View {
     }
 
     @ViewBuilder
-    public func `if`(_ condition: Binding<Bool>, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
+    func `if`(_ condition: Binding<Bool>, @ViewBuilder modifier: @escaping (Self) -> some View) -> some View {
         if condition.wrappedValue {
             modifier(self)
         } else {
@@ -50,7 +50,7 @@ extension View {
     }
     
     @ViewBuilder
-    public func `if`(
+    func `if`(
         _ condition: Binding<Bool>,
         @ViewBuilder modifier: @escaping (Self) -> some View,
         @ViewBuilder else elseModifier: @escaping (Self) -> some View

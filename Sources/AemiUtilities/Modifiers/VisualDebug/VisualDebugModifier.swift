@@ -9,8 +9,8 @@ import SwiftUI
 
 struct VisualDebugModifier: ViewModifier {
     
-    let color: Color
-    let showDimensions: Bool
+    private let color: Color
+    private let showDimensions: Bool
     
     @State
     private var size: CGSize? = .zero
@@ -37,7 +37,7 @@ struct VisualDebugModifier: ViewModifier {
     }
     
     @ViewBuilder
-    func addDimensionsOverlay(@ViewBuilder content: @escaping () -> some View) -> some View {
+    private func addDimensionsOverlay(@ViewBuilder content: @escaping () -> some View) -> some View {
         if showDimensions {
             content()
                 .overlay(alignment: .topTrailing) { sizeOverlay }
@@ -47,7 +47,7 @@ struct VisualDebugModifier: ViewModifier {
     }
     
     @ViewBuilder
-    var sizeOverlay: some View {
+    private var sizeOverlay: some View {
         HStack {
             Text(size!.width, format: .number.precision(.fractionLength(2)).locale(.autoupdatingCurrent))
             + Text("w × ")

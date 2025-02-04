@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 @MainActor
-extension EnvironmentValues {
+public extension EnvironmentValues {
     var safeAreaInsets: EdgeInsets {
         if let windowScene = UIApplication.shared.connectedScenes
             .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
