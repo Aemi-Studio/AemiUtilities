@@ -8,7 +8,8 @@
 import SwiftUI
 import UIKit
 
-@MainActor extension EdgeInsets {
+@MainActor
+public extension EdgeInsets {
     static var safeAreaInsets: EdgeInsets {
         if let windowScene = UIApplication.shared.connectedScenes
             .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
