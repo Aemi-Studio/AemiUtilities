@@ -8,7 +8,22 @@
 import SwiftUI
 
 struct SizeUpdaterModifier: ViewModifier {
-    @Binding private(set) var size: SizeKey.Value?
+    
+    @Binding private(set) var size: SizeKey.Value
+    
+    init(size: Binding<SizeKey.Value?>) {
+        self._size = Binding<SizeKey.Value> {
+            size.wrappedValue ?? CGSize.zero
+        } set: {
+            size.wrappedValue = $0
+        }
+    }
+    
+    init(size: Binding<SizeKey.Value>) {
+        self._size = size
+    }
+    
+    
     func body(content: Content) -> some View {
         content
             .overlay {
