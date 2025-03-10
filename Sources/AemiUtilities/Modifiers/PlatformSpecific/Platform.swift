@@ -22,11 +22,11 @@ public enum Platform {
     case vision
     case unknown
     
-    static func `is`(_ target: Self) -> Bool {
+    public static func `is`(_ target: Self) -> Bool {
         target == .current
     }
     
-    static var current: Platform {
+    public static var current: Platform {
 #if os(macOS)
         .mac
 #elseif os(watchOS)
