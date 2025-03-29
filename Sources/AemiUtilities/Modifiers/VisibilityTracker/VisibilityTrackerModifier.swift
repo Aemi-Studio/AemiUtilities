@@ -35,32 +35,22 @@ struct VisibilityTrackerModifier: ViewModifier {
         content
             .track(bounds: $bounds, in: coordinateSpace)
             .versionAgnosticOnChange(of: bounds) { bounds in
-                updateVisibilty(bounds: bounds, in: containerBounds?.wrappedValue)
+                updateVisibility(bounds: bounds, container: containerBounds?.wrappedValue)
             }
     }
 
-    private func updateVisibilty(
-        bounds: CGRect,
-        in container: CGRect? = UIApplication.currentScreen?.bounds
-    ) {
+    private func updateVisibility(bounds: CGRect, container: CGRect? = nil) {
         guard let container = container ?? UIApplication.currentScreen?.bounds else { return }
-
-        let viewEndY = bounds.origin.y + bounds.height
-        let viewEndX = bounds.origin.x + bounds.width
-        let containerEndY = container.origin.y + container.height
-        let containerEndX = container.origin.x + container.width
         
-        let visibleHeight = min(containerEndY, viewEndY) - max(container.origin.y, bounds.origin.y)
-        let visibleWidth = min(containerEndX, viewEndX) - max(container.origin.x, bounds.origin.x)
+        let intersection = bounds.intersection(container)
+        let visibleArea = intersection.width * intersection.height
+        let viewArea = bounds.width * bounds.height
         
-        let visibleArea = visibleHeight * visibleWidth
-        let viewArea = bounds.height * bounds.width
+        let visibility = (viewArea > 0) ? (visibleArea / viewArea) : 0
+        let isVisible = visibility >= threshold
         
-        let visibility = visibleArea / viewArea
-        self.visibility = min(max(visibility, 0), 1)
-        
-        let isVisible = bounds.intersects(container)
-        if self.isVisible != isVisible {
+        Task { @MainActor in
+            self.visibility = min(max(visibility, 0), 1)
             self.isVisible = isVisible
         }
     }
