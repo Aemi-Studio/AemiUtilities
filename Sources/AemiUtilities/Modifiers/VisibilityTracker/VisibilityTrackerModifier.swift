@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUICore
+import SwiftUI
 
 struct VisibilityTrackerModifier: ViewModifier {
     @State private var bounds: CGRect = .zero

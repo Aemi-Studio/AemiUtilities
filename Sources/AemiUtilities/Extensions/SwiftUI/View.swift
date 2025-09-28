@@ -5,7 +5,7 @@
 //  Created by Gigi on 29/03/25.
 //
 
-import SwiftUICore
+import SwiftUI
 
 internal extension View {
     @ViewBuilder func versionAgnosticOnChange<T: Equatable>(

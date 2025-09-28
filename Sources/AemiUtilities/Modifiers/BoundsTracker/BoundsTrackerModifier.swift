@@ -5,7 +5,7 @@
 //  Created by Gigi on 29/03/25.
 //
 
-import SwiftUICore
+import SwiftUI
 
 internal struct BoundsTrackerModifier: ViewModifier {
     @Binding private var bounds: CGRect
