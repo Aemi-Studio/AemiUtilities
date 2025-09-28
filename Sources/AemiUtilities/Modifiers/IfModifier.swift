@@ -8,7 +8,6 @@
 import SwiftUI
 
 public extension View {
-
     @ViewBuilder
     func `if`(_ condition: Bool...) -> some View {
         if condition.allSatisfy({ $0 }) {
@@ -26,7 +25,7 @@ public extension View {
             self
         }
     }
-    
+
     @ViewBuilder
     func `if`(
         _ condition: Bool,
@@ -48,7 +47,7 @@ public extension View {
             self
         }
     }
-    
+
     @ViewBuilder
     func `if`(
         _ condition: Binding<Bool>,
@@ -61,5 +60,4 @@ public extension View {
             elseModifier(self)
         }
     }
-
 }

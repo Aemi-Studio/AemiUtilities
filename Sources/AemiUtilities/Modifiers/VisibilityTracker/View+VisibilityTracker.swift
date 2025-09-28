@@ -23,7 +23,7 @@ public extension View {
             containerBounds: container
         ))
     }
-    
+
     func track(
         threshold: Double = 1,
         visibility: Binding<CGFloat>,
@@ -38,7 +38,7 @@ public extension View {
             containerBounds: container
         ))
     }
-    
+
     func track(
         isVisible: Binding<Bool>,
         coordinateSpace: CoordinateSpace = .global,

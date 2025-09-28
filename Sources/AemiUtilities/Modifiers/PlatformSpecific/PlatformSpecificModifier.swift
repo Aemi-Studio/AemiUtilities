@@ -9,7 +9,6 @@ import SwiftUI
 
 // Custom ViewModifier that applies the modifiers only for the specified platform
 public struct PlatformSpecificModifier: ViewModifier {
-
     typealias Target = (any View)
     typealias Other = (any View)
 
@@ -19,10 +18,10 @@ public struct PlatformSpecificModifier: ViewModifier {
 
     public func body(content: Content) -> some View {
         if Platform.is(target) {
-            AnyView(self.builder(content))
+            AnyView(builder(content))
         } else {
             counterBuilder != nil
-                ? AnyView(self.counterBuilder!(content))
+                ? AnyView(counterBuilder!(content))
                 : AnyView(content)
         }
     }
@@ -35,7 +34,7 @@ public extension View {
         @ViewBuilder builder: @escaping (PlatformSpecificModifier.Content) -> some View,
         @ViewBuilder else: @escaping (PlatformSpecificModifier.Content) -> some View = { $0 }
     ) -> some View {
-        self.modifier(
+        modifier(
             PlatformSpecificModifier(
                 target: target,
                 builder: builder,

@@ -20,7 +20,7 @@ extension UIApplication {
             .first?
             .windowScene
     }
-    
+
     static var currentScreen: UIScreen? {
         currentScene?.screen
     }

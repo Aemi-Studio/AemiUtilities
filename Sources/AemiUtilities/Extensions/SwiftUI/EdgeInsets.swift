@@ -1,5 +1,5 @@
 //
-//  SafeAreaInsets.swift
+//  EdgeInsets.swift
 //  AemiUtilities
 //
 //  Created by Gigi on 04/02/25.
@@ -13,7 +13,7 @@ public extension EdgeInsets {
     static var safeAreaInsets: EdgeInsets {
         if let windowScene = UIApplication.shared.connectedScenes
             .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-           let insets = windowScene.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets
+            let insets = windowScene.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets
         {
             EdgeInsets(
                 top: insets.top,

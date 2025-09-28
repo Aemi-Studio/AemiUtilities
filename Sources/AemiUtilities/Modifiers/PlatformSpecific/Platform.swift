@@ -8,7 +8,7 @@
 import Foundation
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #endif
 
 @MainActor
@@ -21,37 +21,37 @@ public enum Platform {
     case car
     case vision
     case unknown
-    
+
     public static func `is`(_ target: Self) -> Bool {
         target == .current
     }
-    
+
     public static var current: Platform {
-#if os(macOS)
-        .mac
-#elseif os(watchOS)
-        .watch
-#elseif os(tvOS)
-        .tv
-#else
-        switch UIDevice.current.userInterfaceIdiom {
+        #if os(macOS)
+            .mac
+        #elseif os(watchOS)
+            .watch
+        #elseif os(tvOS)
+            .tv
+        #else
+            switch UIDevice.current.userInterfaceIdiom {
             case .phone:
-                    .phone
+                .phone
             case .pad:
-                    .pad
+                .pad
             case .tv:
-                    .tv
+                .tv
             case .carPlay:
-                    .car
+                .car
             case .mac:
-                    .mac
+                .mac
             case .vision:
-                    .vision
+                .vision
             case .unspecified:
-                    .unknown
+                .unknown
             @unknown default:
-                    .unknown
-        }
-#endif
+                .unknown
+            }
+        #endif
     }
 }

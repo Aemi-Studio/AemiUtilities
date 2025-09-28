@@ -5,9 +5,7 @@
 //  Created by Gigi on 15/02/25.
 //
 
-
 public extension MutableCollection {
-    
     /// Change the value at the specified index.
     /// Index is assumed valid.
     /// - Parameters:
@@ -16,7 +14,7 @@ public extension MutableCollection {
     private mutating func _set(_ element: Element, at index: Index) {
         self[index] = element
     }
-    
+
     subscript(guard index: Index?) -> Element? {
         get {
             if let index = index, indices.contains([index]) {

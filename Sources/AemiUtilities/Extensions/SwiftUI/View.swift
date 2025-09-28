@@ -1,5 +1,5 @@
 //
-//  View+OnChange.swift
+//  View.swift
 //  AemiUtilities
 //
 //  Created by Gigi on 29/03/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-internal extension View {
+extension View {
     @ViewBuilder func versionAgnosticOnChange<T: Equatable>(
         of value: T,
         perform action: @escaping (T) -> Void

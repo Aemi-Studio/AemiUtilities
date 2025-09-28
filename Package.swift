@@ -6,12 +6,13 @@ import PackageDescription
 let package = Package(
     name: "AemiUtilities",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
     ],
     products: [
         .library(
             name: "AemiUtilities",
-            targets: ["AemiUtilities"]),
+            targets: ["AemiUtilities"]
+        ),
     ],
     targets: [.target(name: "AemiUtilities")],
     swiftLanguageModes: [.version("6.2")]
