@@ -10,7 +10,7 @@ let package = Package(
     .library(name: "AemiUtilities", targets: ["AemiUtilities"])
   ],
   dependencies: [
-    .package(url: "https://github.com/Aemi-Studio/aemi.git", revision: "d7fef2930fc176a4c66fa1e0a410d95c56e32b6a")
+    .package(url: "https://github.com/Aemi-Studio/aemi.git", revision: "528804643f693104656a02449cfa59131556f616")
   ],
   targets: [
     .target(
